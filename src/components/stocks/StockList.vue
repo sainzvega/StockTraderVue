@@ -1,9 +1,24 @@
 <template>
-    <p>Stocks Are Here</p>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 my-2" v-for="stock in stocks">
+                <stock></stock>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+    import Stock from './Stock.vue';
+
     export default {
-        
+        data() {
+            return {
+                stocks : this.$store.state.stocks,
+            }
+        },
+        components: {
+            stock : Stock
+        }
     }
 </script>
