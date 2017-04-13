@@ -15,6 +15,7 @@
                 <li class="nav-item">
                     <a class="nav-link">End Day</a>
                 </li>
+                <!--TODO: Fix issue with hover over far right icons.-->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="saveAndLoadLink" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Save and Load</a>
