@@ -7,12 +7,12 @@ import {routes} from './routes';
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    funds: 10,
+    funds: 10.000,
     stocks: [
       {name: 'BMW', price: 100},
       {name: 'Google', price: 100},
       {name: 'Apple', price: 100},
-      {name: 'Burger King', price: 100}
+      {name: 'United', price: 25}
       ],
   },
   mutations: {
@@ -28,6 +28,17 @@ const store = new Vuex.Store({
     },
     decreaseFunds(state, by) {
       state.funds -= by;
+    }
+  },
+  actions : {
+    randomizeStockPrice(context) {
+      context.commit('randomizeStockPrice');
+    },
+    increaseFunds(context) {
+      context.commit('increaseFunds');
+    },
+    decreaseFunds(context) {
+      context.commit('decreaseFunds');
     }
   }
 });

@@ -25,9 +25,24 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Funds: $10.000</a>
+                    <a class="nav-link">Funds: ${{funds | formatDecimal}}</a>
                 </li>
             </ul>
         </div>
     </nav>
 </template>
+
+<script>
+    import { mapState } from 'vuex';
+
+    export default  {
+        computed: {
+            ...mapState(['funds'])
+        },
+        filters : {
+            formatDecimal(value) {
+                return new Number(value).toFixed(3);
+            }
+        }
+    }
+</script>

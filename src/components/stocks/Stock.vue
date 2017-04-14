@@ -18,10 +18,9 @@
 
 <script>
     export default {
+        props: ['name', 'price'],
         data() {
             return {
-                name : 'Test',
-                price : 100, // default..but it should be dynamic.
                 qauntity : null,
             }
         },
