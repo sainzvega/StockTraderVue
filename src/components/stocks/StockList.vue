@@ -20,7 +20,7 @@
         components: {
             stock : Stock
         },
-        // Vue life hookds
+        // Vue life hooks
         created() {
             this.$store.dispatch('randomizeStockPrice');
         }

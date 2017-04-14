@@ -34,11 +34,12 @@ const store = new Vuex.Store({
     randomizeStockPrice(context) {
       context.commit('randomizeStockPrice');
     },
-    increaseFunds(context) {
-      context.commit('increaseFunds');
+    increaseFunds(context, payload) {
+      context.commit('increaseFunds', payload);
     },
-    decreaseFunds(context) {
-      context.commit('decreaseFunds');
+    decreaseFunds(context, payload) {
+      debugger;
+      context.commit('decreaseFunds', payload);
     }
   }
 });

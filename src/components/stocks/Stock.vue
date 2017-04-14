@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-7">
-                        <input class="form-control" type="text" placeholder="Quantity" v-model="qauntity"/>
+                        <input class="form-control" type="text" placeholder="Quantity" v-model="quantity"/>
                     </div>
                     <div class="col-3 offset-2 col-sm-3 offset-sm-2 offset-md-1 col-md-4 offset-lg-1 col-lg-3">
                         <button class="btn btn-success" :disabled="!enableBuyButton" @click="buyClick">Buy</button>
@@ -17,23 +17,27 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
     export default {
         props: ['name', 'price'],
         data() {
             return {
-                qauntity : null,
+                quantity : null,
             }
         },
         computed: {
             enableBuyButton() {
-                return this.qauntity > 0 ? true : false;
+                return this.quantity > 0 ? true : false;
             }
         },
-        methods: {
+        methods : {
+            ...mapActions(['decreaseFunds']),
             buyClick() {
-                this.qauntity = null;
-                console.log("Buying Something");
+                let total = Math.floor(this.price * this.quantity)/1000;
+                this.decreaseFunds(total);
+                this.quantity = null;
+                console.log("Buying Something for total of : $" + total);
             }
-        }
+        },
     }
 </script>
