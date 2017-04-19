@@ -13,7 +13,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link">End Day</a>
+                    <a class="nav-link" @click="endDay">End Day</a>
                 </li>
                 <!--TODO: Fix issue with hover over far right icons.-->
                 <li class="nav-item dropdown">
@@ -33,11 +33,17 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
 
     export default  {
         computed: {
             ...mapState(['funds'])
+        },
+        methods: {
+            ...mapActions(['randomizeStockPrice']),
+            endDay() {
+                this.randomizeStockPrice();
+            }
         },
         filters : {
             formatDecimal(value) {
@@ -46,3 +52,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .nav-item .nav-link {
+        cursor: pointer;
+    }
+</style>

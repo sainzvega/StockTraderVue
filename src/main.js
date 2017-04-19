@@ -2,20 +2,37 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
 import VueRouter from 'vue-router';
-import { routes } from './routes';
+import {
+  routes
+} from './routes';
 
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     funds: 10.000,
-    stocks: [
-      { name: 'BMW', price: 100, isOwned: false }, // not the best...but fuck it
-      { name: 'Google', price: 100, isOwned: false }, // what are you gonna do?
-      { name: 'Apple', price: 100, isOwned: false }, // sue me?
-      { name: 'United', price: 25, isOwned: false } // i aint worth shit. see if i care.
+    stocks: [{
+        name: 'BMW',
+        price: 100,
+        isOwned: false
+      }, // not the best...but fuck it
+      {
+        name: 'Google',
+        price: 100,
+        isOwned: false
+      }, // what are you gonna do?
+      {
+        name: 'Apple',
+        price: 100,
+        isOwned: false
+      }, // sue me?
+      {
+        name: 'United',
+        price: 25,
+        isOwned: false
+      } // i aint worth shit. see if i care.
     ],
   },
-  getters : {
+  getters: {
     ownedStocks: state => {
       return state.stocks.filter(stock => stock.isOwned);
     }
@@ -28,7 +45,7 @@ const store = new Vuex.Store({
         stock.price += (upOrDown * by);
       });
     },
-    sellStock(state, by) {
+    sellStock(state, stockName) {
       let arr = state.stocks,
         index = arr.findIndex((stock) => {
           return stock.name === stockName;
@@ -55,7 +72,6 @@ const store = new Vuex.Store({
   },
   actions: {
     randomizeStockPrice(context) {
-      console.log("Stocks Randomized")
       context.commit('randomizeStockPrice');
     },
     sellStock(context, payload) {
@@ -73,7 +89,9 @@ const store = new Vuex.Store({
 store.dispatch('randomizeStockPrice');
 
 Vue.use(VueRouter);
-const router = new VueRouter({ routes: routes });
+const router = new VueRouter({
+  routes: routes
+});
 
 new Vue({
   el: '#app',

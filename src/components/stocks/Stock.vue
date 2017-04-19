@@ -8,7 +8,7 @@
                         <input class="form-control" type="text" placeholder="Quantity" v-model="quantity" />
                     </div>
                     <div class="col-3 offset-2 col-sm-3 offset-sm-2 offset-md-1 col-md-4 offset-lg-1 col-lg-3">
-                        <button class="btn" :class="btnColorClass" :disabled="!enableButton" @click="moded === 'buy' ? buyClick : sellClick">{{ mode | capFirst }} </button>
+                        <button class="btn" :class="btnColorClass" :disabled="!enableButton" @click="mode === 'buy' ? buyClick() : sellClick()">{{ mode | capFirst }} </button>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     return 'bg-primary'
             },
             btnColorClass() {
-                if (this.mode === 'sell')
+                if (this.mode === 'buy')
                     return 'btn-success'
                 else
                     return 'btn-primary'
@@ -52,7 +52,7 @@
             }
         },
         methods: {
-            ...mapActions(['buyStocks', 'sellStocks']),
+            ...mapActions(['buyStock', 'sellStock']),
             buyClick() {
                 // TODO: check if there are enough funds
                 let total = Math.floor(this.price * this.quantity) / 1000;
